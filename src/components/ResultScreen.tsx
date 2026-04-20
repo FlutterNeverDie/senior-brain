@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAppStore } from '../store';
 import { TossBannerAd } from './TossBannerAd';
@@ -14,8 +15,12 @@ function getBrainAge(score: number): { age: number; emoji: string; praise: strin
 const STAGE_LABELS = ['숫자 기억', '색깔 판단', '잔돈 계산'];
 
 export default function ResultScreen() {
-  const { scores, reset } = useAppStore();
-  const scoreList = [scores.stage1, scores.stage2, scores.stage3];
+  const { goToIntro } = useAppStore();
+  // mount 시점에 점수 스냅샷 → 인트로 이동 시 플리커 방지
+  const [scoreList] = useState(() => {
+    const s = useAppStore.getState().scores;
+    return [s.stage1, s.stage2, s.stage3];
+  });
   const total = scoreList.filter(Boolean).length;
   const { age, emoji, praise, color } = getBrainAge(total);
 
@@ -193,7 +198,7 @@ export default function ResultScreen() {
 
           <motion.button
             whileTap={{ scale: 0.97 }}
-            onClick={reset}
+            onClick={goToIntro}
             style={{
               width: '100%',
               height: 56,

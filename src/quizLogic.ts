@@ -18,7 +18,7 @@ export interface QuizData {
 const COLOR_MAP: Record<string, string> = {
   빨강: '#E53E3E',
   파랑: '#3182CE',
-  노랑: '#D69E2E',
+  노랑: '#F6C90E',
   초록: '#38A169',
   보라: '#805AD5',
 };
@@ -51,8 +51,8 @@ function shuffle<T>(arr: T[], rng: () => number): T[] {
   return a;
 }
 
-export function generateQuizData(): QuizData {
-  const rng = seededRNG(getDateSeed());
+export function generateQuizData(seed?: number): QuizData {
+  const rng = seededRNG(seed ?? Math.floor(Math.random() * 0xffffffff));
 
   // Stage 1: 5~6자리 숫자
   const digitCount = rng() < 0.5 ? 5 : 6;

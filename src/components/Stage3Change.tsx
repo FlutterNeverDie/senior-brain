@@ -11,7 +11,7 @@ function formatWon(n: number) {
 }
 
 export default function Stage3Change() {
-  const { quizData, setScore, goToStage } = useAppStore();
+  const { quizData, setScore, goToStage, playCount } = useAppStore();
   const { showAd } = useTossInterstitialAd();
   const { payAmount, price, itemName, answer, options } = quizData.stage3;
 
@@ -27,9 +27,13 @@ export default function Stage3Change() {
     setScore('stage3', isCorrect);
     setPhase('feedback');
 
-    // 피드백 잠깐 보여주고 광고 → 결과 화면
+    // 피드백 잠깐 보여주고, 두 번째 플레이부터 광고 → 결과 화면
     setTimeout(() => {
-      showAd(() => goToStage('result'));
+      if (playCount >= 2) {
+        showAd(() => goToStage('result'));
+      } else {
+        goToStage('result');
+      }
     }, 1600);
   };
 
