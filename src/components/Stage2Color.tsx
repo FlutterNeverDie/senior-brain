@@ -16,7 +16,7 @@ const COLOR_BG: Record<string, string> = {
 const COLOR_HEX: Record<string, string> = {
   빨강: '#E53E3E',
   파랑: '#3182CE',
-  노랑: '#D69E2E',
+  노랑: '#F6C90E',
   초록: '#38A169',
   보라: '#805AD5',
 };

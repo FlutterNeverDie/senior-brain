@@ -8,7 +8,7 @@ const isTossApp = () => /Toss/i.test(navigator.userAgent);
 function getBrainAge(score: number): { age: number; emoji: string; praise: string; color: string } {
   if (score === 3) return { age: 20, emoji: '🌸🌸🌸', praise: '천재이신가요?! 완벽해요!', color: '#FF6B9D' };
   if (score === 2) return { age: 35, emoji: '🌺🌺', praise: '훌륭하세요! 두뇌가 젊어요!', color: '#F97316' };
-  if (score === 1) return { age: 50, emoji: '🌼', praise: '잘 하셨어요! 내일 더 잘할 수 있어요!', color: '#D69E2E' };
+  if (score === 1) return { age: 50, emoji: '🌼', praise: '잘 하셨어요! 내일 더 잘할 수 있어요!', color: '#F6C90E' };
   return { age: 65, emoji: '🌻', praise: '내일 또 도전해요! 응원합니다!', color: '#805AD5' };
 }
 
