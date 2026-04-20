@@ -1,41 +1,24 @@
-import "./App.css";
+import { AnimatePresence } from 'framer-motion';
+import { useAppStore } from './store';
+import IntroScreen from './components/IntroScreen';
+import Stage1Memory from './components/Stage1Memory';
+import Stage2Color from './components/Stage2Color';
+import Stage3Change from './components/Stage3Change';
+import ResultScreen from './components/ResultScreen';
+import './App.css';
 
-function App() {
+export default function App() {
+  const appStage = useAppStore((s) => s.appStage);
+
   return (
-    <div className="app">
-      <header className="app-header">
-        <h1 className="page-title">반가워요</h1>
-        <p className="page-subtitle">앱인토스 개발을 시작해 보세요.</p>
-      </header>
-
-      <div className="app-actions">
-        <a
-          className="app-button app-button-primary"
-          href="https://developers-apps-in-toss.toss.im"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          개발자센터
-        </a>
-        <a
-          className="app-button app-button-primary"
-          href="https://techchat-apps-in-toss.toss.im"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          개발자 커뮤니티
-        </a>
-      </div>
-
-      <div className="app-logo-wrap">
-        <img
-          className="logo"
-          src={`${import.meta.env.BASE_URL}appsintoss-logo.png`}
-          alt="apps in toss"
-        />
-      </div>
+    <div className="app-wrapper">
+      <AnimatePresence mode="wait">
+        {appStage === 'intro' && <IntroScreen key="intro" />}
+        {appStage === 'stage1' && <Stage1Memory key="stage1" />}
+        {appStage === 'stage2' && <Stage2Color key="stage2" />}
+        {appStage === 'stage3' && <Stage3Change key="stage3" />}
+        {appStage === 'result' && <ResultScreen key="result" />}
+      </AnimatePresence>
     </div>
   );
 }
-
-export default App;
