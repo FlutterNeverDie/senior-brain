@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAppStore } from '../store';
-import { TossBannerAd } from './TossBannerAd';
+
 
 const isTossApp = () => /Toss/i.test(navigator.userAgent);
 
@@ -229,10 +229,7 @@ export default function ResultScreen() {
         </p>
       </div>
 
-      {/* 하단 배너 광고 */}
-      <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 100 }}>
-        <TossBannerAd />
-      </div>
+
     </motion.div>
   );
 }

@@ -4,8 +4,5 @@
  */
 export const AD_CONFIG = {
   // 전면 광고: 3단계 완료 후 결과 화면 전환 직전에 노출
-  INTERSTITIAL: 'ait.v2.live.4c7e9d7a569b4472',
-
-  // 하단 띠 배너 (높이 96px)
-  BANNER: 'ait.v2.live.557cc5e9c7f9426f',
+  INTERSTITIAL: 'ait.v2.live.b010299f41b440c6',
 };
