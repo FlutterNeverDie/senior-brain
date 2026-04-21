@@ -6,13 +6,12 @@ import { useTossInterstitialAd } from '../hooks/useTossInterstitialAd';
 const flowers = ['🌸', '🌺', '🌷', '🌹'];
 
 export default function IntroScreen() {
-  const { startApp, playCount, resetPlayCountIfNewDay } = useAppStore();
+  const { startApp, playCount } = useAppStore();
   const { preload, showAd } = useTossInterstitialAd();
 
   useEffect(() => {
-    resetPlayCountIfNewDay();
     preload();
-  }, [preload, resetPlayCountIfNewDay]);
+  }, [preload]);
 
   const handleStart = () => {
     if (playCount > 0) {
@@ -166,12 +165,12 @@ export default function IntroScreen() {
             cursor: 'pointer',
             boxShadow: '0 6px 20px rgba(255, 107, 157, 0.4)',
             letterSpacing: 1,
-            marginBottom: playCount > 0 ? 8 : 0,
+            marginBottom: (/Toss/i.test(navigator.userAgent) && playCount > 0) ? 8 : 0,
           }}
         >
-          {playCount > 0 ? '훈련 시작 🧠' : '시작하기 🧠'}
+          {(/Toss/i.test(navigator.userAgent) && playCount > 0) ? '훈련 시작 🧠' : '시작하기 🧠'}
         </motion.button>
-        {playCount > 0 && (
+        {(/Toss/i.test(navigator.userAgent) && playCount > 0) && (
           <p style={{ fontSize: 13, color: '#A0AEC0', margin: 0 }}>
             * 광고를 약 5초간 시청한 뒤 시작합니다
           </p>
