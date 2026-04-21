@@ -81,8 +81,8 @@ export default function Stage1Memory() {
             {phase === 'show'
               ? `${countdown}초 동안 숫자를 외우세요!`
               : phase === 'input'
-              ? '외운 숫자를 입력하세요'
-              : ''}
+                ? '외운 숫자를 입력하세요'
+                : ''}
           </p>
         </div>
 
@@ -161,7 +161,7 @@ export default function Stage1Memory() {
                   style={{
                     width: '100%',
                     height: 64,
-                    fontSize: 32,
+                    fontSize: inputVal ? 32 : 22,
                     fontWeight: 700,
                     textAlign: 'center',
                     border: '2px solid #BEE3F8',
@@ -170,7 +170,7 @@ export default function Stage1Memory() {
                     background: '#F0F8FF',
                     color: '#1A365D',
                     boxSizing: 'border-box',
-                    letterSpacing: 4,
+                    letterSpacing: inputVal ? 4 : 0,
                   }}
                 />
               </div>

@@ -1,10 +1,21 @@
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 import { useAppStore } from '../store';
+import { useTossInterstitialAd } from '../hooks/useTossInterstitialAd';
 
-const flowers = ['🌸', '🌺', '🌼', '🌻', '🌷'];
+const flowers = ['🌸', '🌺', '🌷', '🌹'];
 
 export default function IntroScreen() {
   const startApp = useAppStore((s) => s.startApp);
+  const { preload, showAd } = useTossInterstitialAd();
+
+  useEffect(() => {
+    preload();
+  }, [preload]);
+
+  const handleStart = () => {
+    showAd(() => startApp());
+  };
 
   return (
     <motion.div
@@ -25,13 +36,25 @@ export default function IntroScreen() {
       }}
     >
       {/* 꽃 장식 */}
-      <div style={{ fontSize: 56, marginBottom: 8, letterSpacing: 8 }}>
+      <div
+        style={{
+          fontSize: 56,
+          marginBottom: 8,
+          letterSpacing: 8,
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          overflow: 'hidden',
+          whiteSpace: 'nowrap',
+          flexWrap: 'nowrap',
+        }}
+      >
         {flowers.map((f, i) => (
           <motion.span
             key={i}
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
-            style={{ display: 'inline-block' }}
+            style={{ display: 'inline-block', flexShrink: 0 }}
           >
             {f}
           </motion.span>
@@ -124,7 +147,7 @@ export default function IntroScreen() {
       {/* 시작 버튼 */}
       <motion.button
         whileTap={{ scale: 0.96 }}
-        onClick={startApp}
+        onClick={handleStart}
         style={{
           width: '100%',
           maxWidth: 360,
