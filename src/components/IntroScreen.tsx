@@ -6,15 +6,20 @@ import { useTossInterstitialAd } from '../hooks/useTossInterstitialAd';
 const flowers = ['🌸', '🌺', '🌷', '🌹'];
 
 export default function IntroScreen() {
-  const startApp = useAppStore((s) => s.startApp);
+  const { startApp, playCount, resetPlayCountIfNewDay } = useAppStore();
   const { preload, showAd } = useTossInterstitialAd();
 
   useEffect(() => {
+    resetPlayCountIfNewDay();
     preload();
-  }, [preload]);
+  }, [preload, resetPlayCountIfNewDay]);
 
   const handleStart = () => {
-    showAd(() => startApp());
+    if (playCount > 0) {
+      showAd(() => startApp());
+    } else {
+      startApp();
+    }
   };
 
   return (
@@ -145,30 +150,35 @@ export default function IntroScreen() {
       </div>
 
       {/* 시작 버튼 */}
-      <motion.button
-        whileTap={{ scale: 0.96 }}
-        onClick={handleStart}
-        style={{
-          width: '100%',
-          maxWidth: 360,
-          height: 68,
-          background: 'linear-gradient(135deg, #FF6B9D 0%, #FF8E53 100%)',
-          border: 'none',
-          borderRadius: 18,
-          fontSize: 24,
-          fontWeight: 800,
-          color: '#FFFFFF',
-          cursor: 'pointer',
-          boxShadow: '0 6px 20px rgba(255, 107, 157, 0.4)',
-          letterSpacing: 1,
-        }}
-      >
-        시작하기 🧠
-      </motion.button>
+      <div style={{ width: '100%', maxWidth: 360, textAlign: 'center' }}>
+        <motion.button
+          whileTap={{ scale: 0.96 }}
+          onClick={handleStart}
+          style={{
+            width: '100%',
+            height: 68,
+            background: 'linear-gradient(135deg, #FF6B9D 0%, #FF8E53 100%)',
+            border: 'none',
+            borderRadius: 18,
+            fontSize: 24,
+            fontWeight: 800,
+            color: '#FFFFFF',
+            cursor: 'pointer',
+            boxShadow: '0 6px 20px rgba(255, 107, 157, 0.4)',
+            letterSpacing: 1,
+            marginBottom: playCount > 0 ? 8 : 0,
+          }}
+        >
+          {playCount > 0 ? '훈련 시작 🧠' : '시작하기 🧠'}
+        </motion.button>
+        {playCount > 0 && (
+          <p style={{ fontSize: 13, color: '#A0AEC0', margin: 0 }}>
+            * 광고를 약 5초간 시청한 뒤 시작합니다
+          </p>
+        )}
+      </div>
 
-      <p style={{ marginTop: 20, fontSize: 16, color: '#A0AEC0', textAlign: 'center' }}>
-        매일 아침 7시에 새로운 문제가 도착해요
-      </p>
+
     </motion.div>
   );
 }
