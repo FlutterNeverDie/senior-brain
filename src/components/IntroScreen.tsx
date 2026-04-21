@@ -36,15 +36,15 @@ export default function IntroScreen() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '40px 28px',
+        padding: '24px 28px',
         boxSizing: 'border-box',
       }}
     >
       {/* 꽃 장식 */}
       <div
         style={{
-          fontSize: 56,
-          marginBottom: 8,
+          fontSize: 44,
+          marginBottom: 4,
           letterSpacing: 8,
           width: '100%',
           display: 'flex',
@@ -72,26 +72,26 @@ export default function IntroScreen() {
         animate={{ scale: 1 }}
         transition={{ delay: 0.2 }}
         style={{
-          fontSize: 34,
+          fontSize: 28,
           fontWeight: 800,
           color: '#2D3748',
-          margin: '16px 0 8px',
+          margin: '8px 0 4px',
           textAlign: 'center',
           lineHeight: 1.3,
         }}
       >
         부모님 치매예방
         <br />
-        <span style={{ color: '#FF6B9D', fontSize: 28 }}>뇌 건강 체크</span>
+        <span style={{ color: '#FF6B9D', fontSize: 24 }}>뇌 건강 체크</span>
       </motion.h1>
 
       <p
         style={{
-          fontSize: 20,
+          fontSize: 17,
           color: '#718096',
           textAlign: 'center',
           lineHeight: 1.7,
-          margin: '0 0 40px',
+          margin: '0 0 24px',
         }}
       >
         매일 아침 1분,{' '}
@@ -107,9 +107,9 @@ export default function IntroScreen() {
           maxWidth: 360,
           background: '#FFFFFF',
           borderRadius: 20,
-          padding: '24px 20px',
+          padding: '16px 20px',
           boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
-          marginBottom: 40,
+          marginBottom: 24,
         }}
       >
         {[
@@ -122,12 +122,12 @@ export default function IntroScreen() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: 16,
-              padding: '12px 0',
+              gap: 12,
+              padding: '10px 0',
               borderBottom: i < 2 ? '1px solid #F7F8FA' : 'none',
             }}
           >
-            <span style={{ fontSize: 32 }}>{item.icon}</span>
+            <span style={{ fontSize: 28 }}>{item.icon}</span>
             <div>
               <span
                 style={{
@@ -141,7 +141,7 @@ export default function IntroScreen() {
               >
                 {item.label}
               </span>
-              <p style={{ margin: '4px 0 0', fontSize: 19, color: '#2D3748', fontWeight: 500 }}>
+              <p style={{ margin: '2px 0 0', fontSize: 17, color: '#2D3748', fontWeight: 500 }}>
                 {item.desc}
               </p>
             </div>
@@ -156,11 +156,11 @@ export default function IntroScreen() {
           onClick={handleStart}
           style={{
             width: '100%',
-            height: 68,
+            height: 60,
             background: 'linear-gradient(135deg, #FF6B9D 0%, #FF8E53 100%)',
             border: 'none',
             borderRadius: 18,
-            fontSize: 24,
+            fontSize: 22,
             fontWeight: 800,
             color: '#FFFFFF',
             cursor: 'pointer',

@@ -215,18 +215,7 @@ export default function ResultScreen() {
           </motion.button>
         </motion.div>
 
-        {/* 내일 안내 */}
-        <p
-          style={{
-            fontSize: 16,
-            color: '#A0AEC0',
-            textAlign: 'center',
-            margin: 0,
-            lineHeight: 1.6,
-          }}
-        >
-          🌙 내일 아침 7시에 새로운 문제가 도착합니다
-        </p>
+
       </div>
 
 
