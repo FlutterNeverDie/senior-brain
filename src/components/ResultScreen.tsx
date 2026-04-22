@@ -25,16 +25,18 @@ export default function ResultScreen() {
   const { age, emoji, praise, color } = getBrainAge(total);
 
   const handleShare = () => {
-    const text = `오늘 뇌 나이 ${age}세! 3문제 중 ${total}개 맞췄어요! ${emoji}\n부모님 치매예방 뇌 건강 체크 👉 앱인토스`;
-    if (isTossApp()) {
-      // 앱인토스 share API
-      import('@apps-in-toss/web-framework').then(({ share }) => {
-        (share as any)?.({ message: text }).catch(() => null);
+    const text = `오늘 뇌 나이 ${age}세! 3문제 중 ${total}개 맞췄어요! ${emoji}\n\n부모님 치매예방 뇌 건강 체크\nhttps://minion.toss.im/3TNFeFlw`;
+    
+    if (navigator.share) {
+      navigator.share({
+        title: '부모님 치매예방 뇌 건강 체크',
+        text: text,
       }).catch(() => null);
-    } else if (navigator.share) {
-      navigator.share({ title: '부모님 치매예방 뇌 건강 체크', text }).catch(() => null);
     } else {
-      alert('공유 기능은 토스 앱에서 이용해 주세요!');
+      // 공유 미지원 시 fallback (필요 시 alert 등을 유지하거나 클립보드 복사 추가 가능)
+      const url = 'https://minion.toss.im/3TNFeFlw';
+      const fallbackText = `${text}`;
+      alert('공유 기능을 지원하지 않는 환경입니다. 주소를 복사해 주세요!\n\n' + url);
     }
   };
 
